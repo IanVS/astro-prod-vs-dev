@@ -1,0 +1,13 @@
+.p,
+.p-md,
+.p-sm {
+  color: var(--theme-text-dim);
+  font-weight: 500;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+.p-md {
+  font-size: 14px;
+  line-height: 160%;
+}

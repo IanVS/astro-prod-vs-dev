@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ColorSwatch from '../components/ColorSwatch.astro';
+---
+
+<Layout title="Welcome to Astro.">
+	<main>
+		<ColorSwatch colorName="Purple" hsl="259,73,50" />
+	</main>
+</Layout>
+
+<style>
+	h1 {
+		margin: 2rem 0;
+	}
+
+	main {
+		margin: auto;
+		padding: 1em;
+		max-width: 60ch;
+	}
+
+</style>

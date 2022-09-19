@@ -1,0 +1,56 @@
+---
+const { colorName, hsl } = Astro.props;
+
+// https://stackoverflow.com/a/54450566/1435658
+function hslToHex(h, s, l) {
+  l /= 100;
+  const a = (s * Math.min(l, 1 - l)) / 100;
+  const f = (n) => {
+    const k = (n + h / 30) % 12;
+    const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+    // convert to Hex and prefix "0" if needed
+    return Math.round(255 * color)
+      .toString(16)
+      .padStart(2, "0");
+  };
+  return `#${f(0)}${f(8)}${f(4)}`;
+}
+const [h, s, l] = hsl.split(",");
+const hex = hslToHex(h, s, l);
+---
+
+<div class="ColorSwatch">
+  <div class="circle" style={`background-color: ${hex}`}></div>
+  <div class="details">
+    <h5 class="h6 text-uppercase">{colorName}</h5>
+    <p class="p-md">Hex: <b>{hex}</b></p>
+    <p class="p-md">HSL: <b>{hsl}</b></p>
+  </div>
+</div>
+
+<style>
+  .ColorSwatch {
+    display: flex;
+    align-items: center;
+  }
+
+  h5.h6 {
+    color: var(--theme-text-dim);
+  }
+
+  .p-md {
+    margin: 0;
+  }
+
+  b {
+    color: white;
+    font-weight: 700;
+  }
+
+  .circle {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    margin-right: 16px;
+  }
+</style>
